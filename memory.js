@@ -2,6 +2,10 @@
 
 const cards = [];
 
+const values = [];
+
+const tests = [];
+
 const fronts = [];
 
 class Memory {
@@ -11,62 +15,34 @@ class Memory {
 		this.idCard;
 		this.board; 	
 	}
-	init() {
-
-		// le plateau et les cartes sont crées, 
-		// récupération des éléments et intialisation du jeu, de la logique du jeu
-
-		for (let i = 1; i <= board.difficulty; i++) {
-
-			//console.log(board.difficulty);
-
-			memory.distributePositionsCardsRandom(i);
-
-
-			const card = new Card(i);
-
-			console.log(i);
-
-			card.init();
-
-			
-
-			card.click();
-
-			console.log(card);
-
-			cards.push(card);
-
-			console.log("tableau = " + cards.length);
-
-		}
-	}
-	constructCouples() {
+	setDifficulty() {
 
 		// pour la difficulté 10, il y aura 5 fronts
 		// pour la difficulté 20, il y aura 10 fronts
 		// pour la difficulté 30, il y aura 15 fronts
-	}
-	distributePositionsCardsRandom(i) {
-
-		/*
-
-		A écrire :
-
-		une boucle dans laquelle i ne sera jamais sa et ses dernieres valeurs (switch ?) :
-
-
-
-		while (i < board.difficulty) {
-
-			i = Math.floor(Math.random() * Math.floor(board.difficulty));	
-
-			board.difficulty--;
-
-			console.log(i);
+		for (let i = 1; i <= board.difficulty; i++) {
+			values.push(i);
+			console.log(values);
+			console.log(values.length);
 		}
+		memory.distributePositionsCardsRandom();
+	}
+	distributePositionsCardsRandom() {
 
-		*/
+		for (let y = 1; y <= values.length; y++) { 
+			let numberRandom = Math.floor(Math.random() * Math.floor(values.length));
+			let random = values.splice(numberRandom, 1);
+			console.log(values);
+			memory.initCard(random);
+		}
+	}
+	initCard(x) {
+
+		// le plateau et les cartes sont crées, 
+		// récupération des éléments et intialisation du jeu, de la logique du jeu
+		const card = new Card(x);
+		card.init();
+		card.click();
 	}
 	showMeCards() {
 
@@ -131,7 +107,7 @@ class Memory {
 
 const memory = new Memory();
 
-memory.init();
+memory.setDifficulty();
 
 
 
