@@ -1,12 +1,8 @@
 // memory
 
-const cards = [];
-
 const values = [];
 
 const tests = [];
-
-const fronts = [];
 
 class Memory {
 
@@ -14,6 +10,7 @@ class Memory {
 
 		this.idCard;
 		this.board; 	
+		this.interval;
 	}
 	setDifficulty() {
 
@@ -29,35 +26,36 @@ class Memory {
 	}
 	distributePositionsCardsRandom() {
 
-		for (let y = 1; y <= values.length; y++) { 
+		for (let y = 1; y <= values.length; y) { 
 			let numberRandom = Math.floor(Math.random() * Math.floor(values.length));
 			let random = values.splice(numberRandom, 1);
+			console.log(values.length);
 			console.log(values);
 			memory.initCard(random);
 		}
 	}
-	initCard(x) {
+	initCard(random) {
 
-		// le plateau et les cartes sont crées, 
-		// récupération des éléments et intialisation du jeu, de la logique du jeu
-		const card = new Card(x);
+		// Création des cartes, de leurs fronts et back, et écoute des click 1 et 2
+		const card = new Card(random);
 		card.init();
-		card.click();
-	}
-	showMeCards() {
-
-		// apparition des cartes pdt 5 sec
+		card.fronts();
+		card.setShowMeCards();
 	}
 	turn() {
 
 		// Chaque tour équivault à 2 cartes dévoilées
 	}
+	counterClick() {
+
+		console.log(card.counter);
+		
+	}
 	firstClick() {
 
-		// A chaque tour : une premiere carte est dévoilée  
-
+		// A chaque tour : une premiere carte est dévoilée,
 		// juste check au click du num de la carte :
-			
+		
 	}
 	rotate() {
 
@@ -67,9 +65,10 @@ class Memory {
 
 		// une seconde carte est dévoilée
 	}
-	checkTwin() {
+	checkMatch() {
 
 		// check match
+
 	}
 	fail() {
 
@@ -108,6 +107,8 @@ class Memory {
 const memory = new Memory();
 
 memory.setDifficulty();
+
+//memory.setShowMeCards();
 
 
 

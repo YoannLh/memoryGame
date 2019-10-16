@@ -1,5 +1,8 @@
 
 
+#body {
+	display: flex;
+}
 #board
 {
 	display: flex;
@@ -8,6 +11,17 @@
 	min-height: 550px;
 	border: red solid 1px;
 	flex-wrap: wrap;
+}
+#alert 
+{  
+	position: absolute;
+	z-index: 256;
+	width: 100%;
+	margin: auto;
+	font-size: 5em;
+	color: red;
+	background: blue;
+	opacity: 0;
 }
 
 /*
