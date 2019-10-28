@@ -1,8 +1,5 @@
 
 
-#body {
-	display: flex;
-}
 #board
 {
 	display: flex;
@@ -16,9 +13,10 @@
 {  
 	position: absolute;
 	z-index: 256;
-	width: 100%;
+	width: 50%;
 	margin: auto;
-	font-size: 5em;
+	height: 200px;
+	font-size: 3em;
 	color: red;
 	background: blue;
 	opacity: 0;

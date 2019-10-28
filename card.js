@@ -4,13 +4,15 @@ const backs = ["url('img/back.jpg')"];
 
 const fronts = ["url('img/1.png')", "url('img/2.jpg')", "url('img/3.jpg')", "url('img/4.jpg')", "url('img/5.jpg')"];
 
+const temp = [];
+
 let counter = 2;
 
 let temp1;
 
 let temp2;
 
-let turn;
+// let turn;
 
 class Card {
 
@@ -61,6 +63,7 @@ class Card {
 		}
 	}
 	back() {
+		
 		clearInterval(this.interval);
 		this.newCard.style.backgroundImage = backs[0];
 		this.click();
@@ -74,6 +77,8 @@ class Card {
 		
 		this.newCard.addEventListener("click", () => {
 			console.log(counter);
+			temp.push(this.newCard);
+			console.log(temp);
 			if (counter === 1) {
 				this.fronts();
 				console.log("click 2: " + this.idCard);
@@ -82,17 +87,27 @@ class Card {
 				//counter = 0;	
 				if (temp1 != temp2) {
 					console.log("non");
-					//counter = 0;
+					counter = 0;
 					this.alert.style.opacity = 1;
 					console.log("no tries anymore");
-					this.alert.style.innerHTML = "c'est au tour de l'IA ! Serre les fesses !";
+					this.alert.innerHTML = "fail... C'est au tour de l'IA";
 					/*
 					Lancement de l'IA 
 					*/
 		   		} else {
+		   			temp.push(this.newCard);
+		   			console.log(temp);
+		   			counter = 0;
 		   			this.alert.style.opacity = 1;
-		   			this.alert.style.innerHTML = "Good Job !";
+		   			this.alert.innerHTML = "Good Job !";
 		   			console.log("good job !");
+		   			temp[0].style.display = "none";
+		   			temp[1].style.display = "none";
+		   			temp.pop();
+		   			temp.pop();
+		   			temp.pop();
+		   			console.log(temp);
+		   			this.click();	
 		   		}
 			}
 			if (counter === 2) {
@@ -107,7 +122,7 @@ class Card {
 	}
 }
 
-// Il faut refacto click() en appelant memory.js 
+// NB: Il faudrait refacto click() en appelant memory.js ...
 
 
 
