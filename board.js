@@ -8,7 +8,8 @@ class Board {
 		this.board = document.getElementById("board"); // à créer en HTML
 	}
 	init() {
-	
+
+		// pas d'utilité pour le moment
 	}
 	positions() {
 

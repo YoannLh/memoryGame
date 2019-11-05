@@ -77,13 +77,16 @@ class Card {
 		this.interval = setInterval(() => {this.back()}, 3000);
 	}
 	click() {
-		
+
+		if (turn === true) {
+			counter = 2;
+		}
 		this.newCard.addEventListener("click", () => {
 			console.log("click");
 			console.log(counter);
 			temp.push(this.newCard);
 			console.log(temp);
-			if (counter === 1 && turn === false) {
+			if (counter === 1) {
 				this.fronts();
 				console.log("click 2: " + this.idCard);
 				temp2 = this.newCard.style.backgroundImage;	
@@ -96,9 +99,8 @@ class Card {
 					this.alert.style.opacity = 1;
 					console.log("no tries anymore");
 					this.alert.innerHTML = "fail... C'est au tour de l'IA";
-					turn === true; 
 					this.timerHideAllCards();
-					//Lancement de l'IA
+					//Lancement de l'IA au bout de 2 secondes
 					ia.firstClick();
 					
 		   		} else {
@@ -107,18 +109,19 @@ class Card {
 		   			this.alert.style.opacity = 1;
 		   			this.alert.innerHTML = "Good Job !";
 		   			console.log("good job !");
-		   			temp[0].style.display = "none";
-		   			temp[1].style.display = "none";
+		   			temp[0].style.opacity = "0";
+		   			temp[1].style.opacity = "0";
 		   			temp.pop();
 		   			temp.pop();
 		   			console.log(temp);
 		   			temp1 = "";
 		   			temp2 = "";
-		   			counter = 2;
+		   			turn = true;
+		   			//counter = 2;
 		   			//this.click();	
 		   		}
 			}
-			if (counter === 2 && turn === false) {
+			if (counter === 2) {
 				this.fronts();
 				console.log("click 1: " + this.idCard);
 				temp1 = this.newCard.style.backgroundImage;
