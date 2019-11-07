@@ -6,13 +6,15 @@ const fronts = ["url('img/1.png')", "url('img/2.jpg')", "url('img/3.jpg')", "url
 
 const temp = [];
 
-let counter = 2;
-
 let temp1;
 
 let temp2;
 
-let turn = false;
+let turn;
+
+let tryOne = true;
+
+let tryTwo = false;
 
 class Card {
 
@@ -69,67 +71,78 @@ class Card {
 		
 		clearInterval(this.interval);
 		this.newCard.style.backgroundImage = backs[0];
-		this.click();
+		this.spyClicks();
 	}
 	setShowMeCards() {
 
 		// apparition des cartes pdt 3 sec
 		this.interval = setInterval(() => {this.back()}, 3000);
 	}
-	click() {
+	spyClicks() {
 
-		if (turn === true) {
-			counter = 2;
-		}
 		this.newCard.addEventListener("click", () => {
-			console.log("click");
-			console.log(counter);
-			temp.push(this.newCard);
-			console.log(temp);
-			if (counter === 1) {
-				this.fronts();
-				console.log("click 2: " + this.idCard);
-				temp2 = this.newCard.style.backgroundImage;	
-				console.log(temp2);
-				//counter = 0;	
-				if (temp1 != temp2) {
-					console.log("non");
-					counter = 0;
-					this.timerAlert();
-					this.alert.style.opacity = 1;
-					console.log("no tries anymore");
-					this.alert.innerHTML = "fail... C'est au tour de l'IA";
-					this.timerHideAllCards();
-					//Lancement de l'IA au bout de 2 secondes
-					ia.firstClick();
-					
-		   		} else {
-		   			console.log(temp);
-		   			this.timerAlert();
-		   			this.alert.style.opacity = 1;
-		   			this.alert.innerHTML = "Good Job !";
-		   			console.log("good job !");
-		   			temp[0].style.opacity = "0";
-		   			temp[1].style.opacity = "0";
-		   			temp.pop();
-		   			temp.pop();
-		   			console.log(temp);
-		   			temp1 = "";
-		   			temp2 = "";
-		   			turn = true;
-		   			//counter = 2;
-		   			//this.click();	
-		   		}
+
+			if (tryOne === true && tryTwo === false) { 
+				this.firstClick();
+			} else if (tryOne === false && tryTwo === true) { 
+				this.secondClick();
 			}
-			if (counter === 2) {
-				this.fronts();
-				console.log("click 1: " + this.idCard);
-				temp1 = this.newCard.style.backgroundImage;
-				console.log(temp1);
-				counter = 1;
-				//console.log(counter);
-			}				
-		})	
+		})
+	}
+	pushCards() {
+
+		console.log("click");
+		temp.push(this.newCard);
+		console.log(temp);
+	}
+	firstClick() { 
+		
+		this.pushCards();
+		this.fronts();
+		console.log("click 1: " + this.idCard);
+		temp1 = this.newCard.style.backgroundImage;
+		console.log(temp1);
+		tryOne = false;
+		tryTwo = true;
+		//this.spyClicks();
+			
+	}
+	secondClick() {
+
+		this.pushCards();
+		this.fronts();
+		console.log("click 2: " + this.idCard);
+		temp2 = this.newCard.style.backgroundImage;	
+		console.log(temp2);
+			
+		if (temp1 != temp2) {
+			console.log("non");
+			this.timerAlert();
+			this.alert.style.opacity = 1;
+			console.log("no tries anymore");
+			this.alert.innerHTML = "fail... C'est au tour de l'IA";
+			this.timerHideAllCards();
+			//Lancement de l'IA au bout de 2 secondes
+			ia.firstClick();
+					
+		}
+		if (temp1 === temp2) {
+		   	console.log(temp);
+		   	this.timerAlert();
+		   	this.alert.style.opacity = 1;
+		   	this.alert.innerHTML = "Good Job !";
+		   	console.log("good job !");
+		   	temp[0].style.opacity = "0";
+		   	temp[1].style.opacity = "0";
+		   	temp.pop();
+		   	temp.pop();
+		   	console.log(temp);
+		   	temp1 = "";
+		   	temp2 = "";
+		   	tryOne = true;
+		   	tryTwo = false;
+			//this.spyClicks();
+	   	}
 	}
 	opacityAlert() {
 

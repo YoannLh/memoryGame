@@ -19,7 +19,7 @@ class Ia {
 
 		clearInterval(this.intervalGoIA);
 
-		this.intervalChoice = setInterval(() => {this.randomChoice()}, 2000);
+		this.intervalChoice = setInterval(() => {this.randomChoice()}, 4000);
 
 	}
 	randomChoice() {
@@ -40,6 +40,8 @@ class Ia {
 
 	}
 	secondRandomChoice() {
+
+		// selectionne parmi les cartes presentes (!) une seconde carte
 
 		clearInterval(this.secondIntervalChoice);
 
