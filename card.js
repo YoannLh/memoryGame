@@ -1,5 +1,7 @@
 // class Card 
 
+const idCards = [];
+
 const backs = ["url('img/back.jpg')"];
 
 const fronts = ["url('img/1.png')", "url('img/2.jpg')", "url('img/3.jpg')", "url('img/4.jpg')", "url('img/5.jpg')"];
@@ -34,7 +36,9 @@ class Card {
 	}
 	init() {
 
-		// console.log("créa de la card " + this.idCardArray);
+		// push dans l'array idCards pour identifier les cartes
+		idCards.push(this.idCard);
+		console.log(idCards);
 		console.log("init");
 		console.log(this.idCard);
 		this.newCard = document.createElement("div");
@@ -103,9 +107,7 @@ class Card {
 		temp1 = this.newCard.style.backgroundImage;
 		console.log(temp1);
 		tryOne = false;
-		tryTwo = true;
-		//this.spyClicks();
-			
+		tryTwo = true;		
 	}
 	secondClick() {
 
@@ -120,11 +122,10 @@ class Card {
 			this.timerAlert();
 			this.alert.style.opacity = 1;
 			console.log("no tries anymore");
-			this.alert.innerHTML = "fail... C'est au tour de l'IA";
+			this.alert.innerHTML = "fail... C'est au tour de l'adversaire !";
 			this.timerHideAllCards();
 			//Lancement de l'IA au bout de 2 secondes
-			ia.firstClick();
-					
+			ia.firstClick();			
 		}
 		if (temp1 === temp2) {
 		   	console.log(temp);
@@ -141,7 +142,6 @@ class Card {
 		   	temp2 = "";
 		   	tryOne = true;
 		   	tryTwo = false;
-			//this.spyClicks();
 	   	}
 	}
 	opacityAlert() {

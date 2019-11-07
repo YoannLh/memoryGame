@@ -22,6 +22,13 @@ class Ia {
 		this.intervalChoice = setInterval(() => {this.randomChoice()}, 4000);
 
 	}
+	alwaysPresentsCards() {
+
+		// l'array idCards peut etre recuperé depuis card.js, on peut utiliser les id des cartes
+
+		console.log(idCards);
+
+	}
 	randomChoice() {
 
 		clearInterval(this.intervalChoice);
@@ -50,6 +57,8 @@ class Ia {
 }
 
 const ia = new Ia();
+
+
 
 
 

@@ -42,66 +42,6 @@ class Memory {
 		card.fronts();
 		card.setShowMeCards();
 	}
-	turn() {
-
-		// Chaque tour équivault à 2 cartes dévoilées
-	}
-	counterClick() {
-
-		console.log(card.counter);
-		
-	}
-	firstClick() {
-
-		// A chaque tour : une premiere carte est dévoilée,
-		// juste check au click du num de la carte :
-		
-	}
-	rotate() {
-
-		//rotation de la carte clickée
-	}
-	secondClick() {
-
-		// une seconde carte est dévoilée
-	}
-	checkMatch() {
-
-		// check match
-
-	}
-	fail() {
-
-		// si le match est mauvais
-	}
-	win() {
-
-		// si le match est bon
-
-		// memory.findTwin();
-	}
-	findTwin() {
-
-		// yes !
-	}
-	numberOfFindedTwin() {
-
-		// comptabliliser les couples trouvés, si moitié dépassée >>>
-	}
-	totalFail() {
-
-		// plus de la moitié des couples ont fail
-
-		// "vous avez perdu";
-	}
-	totalWin() {
-
-		// laissez tourner pour un possible perfect...
-
-		// En tout cas, après toutes possiblités épuisées si plus de la moitié des couples ont été trouvés
-
-		// "YOU WON !";
-	}
 }
 
 const memory = new Memory();
